@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Orders";
+}
+<!DOCTYPE html>
+<html ng-app="OAPApp">
+<head>
+    <title>@ViewData["Title"]</title>
+    <script src="~/lib/angular/angular.js"></script>
+    <script src="~/js/Module.js"></script>
+    <script src="~/js/Service.js"></script>
+    <script src="~/js/Controller.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body ng-controller="OrderController">
+    <div class="body-content">
+        <h3>@ViewData["Message"]</h3>
+        <button type="button" class="btn" id="new" value="New" ng-click="refresh()">
+            <span class="glyphicon glyphicon-plus"></span> Refresh
+        </button>
+        <br />
+        <br />
+        <table id="tblCRUD" class="table" width="500">
+            <tbody>
+                <tr>
+                    <td>
+                        <span>Search</span>
+                    </td>
+                    <td>
+                        <input type="text" id="bsearchkey" required="" ng-model="SearchKey">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>Dish</span>
+                    </td>
+                    <td>
+                        <input type="text" id="bauthor" required="" ng-model="SearchResult">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label ng-class="statusSearchClass">{{statusSearch}}</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="button" class="btn-success" id="save" value="Search" ng-click="searchDish()">
+                            <span class="glyphicon glyphicon-search"></span> Search
+                        </button>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <br /><br />
+        <table>
+            <tr>
+                <td>
+                    <table id="searchObjResults" class="table-striped table-hover" width="600">
+                        <tr>
+                            <th>Search Key</th>
+                            <th>Result</th>
+                        </tr>
+                        <tr ng-repeat="order in Orders">
+                            <td>{{order.searchKey}}</td>
+                            <td>{{order.result}}</td>
+                        </tr>
+                    </table>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+        <br />
+        <label ng-class="statusClass">Status: {{status}}</label><br /><br />
+
+    </div>
+</body>
+</html>
